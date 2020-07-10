@@ -1,0 +1,4 @@
+METHOD (OPTIONS|GET|HEAD|POST|PUT|DELETE|TRACE|CONNECT)
+NGUSERNAME [a-zA-Z\.\@\-\+_%]+
+NGUSER %{NGUSERNAME}
+NGINX_ACCESS %{IPORHOST:client_ip} %{NGUSER:ident} %{NGUSER:auth} \[%{HTTPDATE:timestamp_nginx_access}\] "%{METHOD:method} %{URIPATHPARAM:request} HTTP/%{NUMBER:httpversion}" %{NUMBER:status_code} (?:%{NUMBER:bytes_sent}|-) %{NUMBER:bytes_received} (?:"(?:%{URI:referrer}|-)"|%{QS:referrer}) %{QS:agent} (?:%{QS:forwardedfor}|-) %{NUMBER:request_time} (?:%{NUMBER:upstream_time:float}|-)
